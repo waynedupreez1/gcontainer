@@ -12,11 +12,12 @@ ENV PUID=1000 \
     USER_HOME="/home/gaming" \
     TZ=${tz} \
     USER_LOCALES="en_US.UTF-8 UTF-8" \
-    container=docker
+    container=docker \
+    DEBIAN_FRONTEND=noninteractive
 
 # Install core packages
-RUN apt-get update && \
-    apt-get upgrade && \
+RUN apt-get update -y && \
+    apt-get upgrade -y && \
     dpkg --add-architecture i386 && \
     apt-get install -y --no-install-recommends \
         software-properties-common \
