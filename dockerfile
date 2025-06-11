@@ -59,7 +59,15 @@ RUN apt-get update && \
 # Install Graphics/Audio
 RUN apt-get update && \
     add-apt-repository ppa:kisak/kisak-mesa && \
-    apt-get install -y --no-install-recommends \         
+    apt-get install -y --no-install-recommends \
+        xserver-xorg \
+        xserver-xorg-video-dummy \
+        xinit \
+        x11-xserver-utils \
+        x11-apps \
+        dbus-x11 \
+        i965-va-driver-shaders \
+        vainfo \
         mesa-utils \
         vulkan-tools \
         libvulkan1 \
@@ -86,11 +94,6 @@ RUN apt-get update && \
 #Install XFCE and terminal
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-        x11-apps \
-        i965-va-driver \
-        vainfo \
-        xserver-xorg-video-dummy \
-        dbus-x11 \
         xfce4 \
         libxfce4ui-utils \
         thunar \
@@ -172,10 +175,10 @@ ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLA
 RUN tar -C / -Jxpf /tmp/s6-overlay-x86_64.tar.xz
 
 #Add services to run via supervisor
-COPY supervisor/ /etc/s6-overlay/s6-rc.d/
+#COPY supervisor/ /etc/s6-overlay/s6-rc.d/
 
 #Copy fake monitor configs
-COPY dummy-1920x1080.conf /etc/X11/xorg.conf.d/
+COPY 10_dummy_1920x1080.conf /etc/X11/xorg.conf.d/
 
 RUN rm -rf \
     /var/lib/apt/lists/* \

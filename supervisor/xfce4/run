@@ -1,0 +1,3 @@
+#!/bin/sh
+# Start DBus
+xinit /usr/bin/xfce4-session -- :0

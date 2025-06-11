@@ -4,6 +4,8 @@ Gaming Container
 podman run -d \
   --runtime crun \
   --device /dev/dri \
+  --device /dev/uinput \
+  --device /dev/uhid \
   --name=test \
   --restart=unless-stopped \
   --userns=keep-id \
@@ -14,4 +16,4 @@ podman run -d \
   localhost/local:latest
 
 Init
-https://github.com/just-containers/s6-overlay?tab=readme-ov-file#quickstart
+https://github.com/just-containers/s6-overlay?tab=readme-ov-file#quickstart/dev/input/:/dev/input/:ro
